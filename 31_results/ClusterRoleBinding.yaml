@@ -1,0 +1,28 @@
+#apiVersion: rbac.authorization.k8s.io/v1
+#kind: ClusterRole
+#metadata:
+#  name: tekton-results-impersonate
+#rules:
+#  - apiGroups: [""]
+#    resources: ["users", "groups", "serviceaccounts"]
+#    verbs: ["impersonate"]
+#  - apiGroups: ["authentication.k8s.io"]
+#    resources: ["uids"]
+#    verbs: ["impersonate"]
+#
+#---
+#
+#apiVersion: rbac.authorization.k8s.io/v1
+#kind: ClusterRoleBinding
+#metadata:
+#  name: tekton-results-impersonate
+#subjects:
+#  - kind: ServiceAccount
+#    name: impersonate-admin
+#    namespace: tekton-pipelines
+#roleRef:
+#  apiGroup: rbac.authorization.k8s.io
+#  kind: ClusterRole
+#  name: tekton-results-impersonate
+#
+#

@@ -1,0 +1,15 @@
+apiVersion: logging.openshift.io/v1
+kind: ClusterLogging
+metadata:
+  name: instance
+  namespace: openshift-logging
+  annotations:
+    created-by: prbindal
+spec:
+  collection:
+    type: vector
+#  logStore:
+#    lokistack:
+#      name: logging-loki
+#    type: lokistack
+  managementState: Managed

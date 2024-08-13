@@ -1,0 +1,25 @@
+apiVersion: "logging.openshift.io/v1"
+kind: ClusterLogForwarder
+metadata:
+  name: tkn-logging
+  namespace: openshift-logging
+  annotations:
+    created-by: prbindal@redhat.com
+spec:
+  serviceAccountName: clf
+  outputs:
+  - name: loki-insecure
+    type: "loki"
+    url: https://logging-loki-openshift-logging.apps.hive4.psi.ospqa.com
+    secret:
+      name: lokistack-gateway-bearer-token
+#    loki:
+#      tenantKey: kubernetes.namespace_name
+#      labelKeys:
+#        - kubernetes.labels.foo
+  pipelines:
+    - inputRefs:
+      - application
+      outputRefs:
+      - loki-insecure
+
